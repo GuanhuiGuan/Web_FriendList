@@ -1,34 +1,88 @@
-// listen
-// get -> render
-// post -> add data -> redirect
+// set up database
+var mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/test_app");
+// create collection Frd
+var frdSchema = new mongoose.Schema({
+	name: String
+});
+var Frd = mongoose.model("Frd", frdSchema);
 
-var express = require("express");
-var app = express();
+// set up bodyparser
 var bodyParser = require("body-parser");
 
+// set up server
+var express = require("express");
+var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-var friends = ["Will", "Jack", "Elizabeth"];
 
-// homepage
-app.get('/', (req, res) => res.render("home"));
 
-// display friends list
+
+
+
+// _____________________MAIN CODE_________________
+// home
+app.get("/", (req, res) => res.render("home"));
+
+
+// // save a sample friend
+// var john = new Frd({
+// 	name: "John"
+// });
+// john.save(function(err, frd) {
+// 	if(err) {
+// 		console.log("Error!");
+// 		console.log(err);
+// 	}
+// 	else {
+// 		console.log("Saved a new object!");
+// 		console.log(frd);
+// 	}
+// })
+
+// display friend list
 app.get("/friends", function(req, res) {
-	// render in friends.ejs, pass var friends(var name in ejs) with data friends
-	res.render("friends", {friends: friends});
+	Frd.find({}, function(err, frds) {
+		if(err)	console.log("Error -> " + err);
+		else {
+			console.log("Found!");
+			console.log(frds);
+			res.render("friends", {Frds: frds});
+		}
+	})
 });
 
-// post a new friends
+// add friend
 app.post("/addfriend", function(req, res) {
 	console.log(req.body);
-	var newFrd = req.body.newFrd;
-	friends.push(newFrd);
-	// res.send("Posting...");
+	var input_name = req.body.frd;
+	var newFrd = new Frd({
+		name: input_name
+	});
+	newFrd.save(function(err, frd) {
+		if(err)	console.log("Error -> " + err);
+		else {
+			console.log("Saved!");
+			console.log(frd);
+		}
+	})
+
 	res.redirect("/friends");
-});
+})
 
+// add friend
+app.post("/delfriend", function(req, res) {
+	console.log(req.body);
+	var input_name = req.body.frd;
+	var myquery = {name: input_name};
+	Frd.remove(myquery, function(err, obj) {
+		if(err)	console.log("Error -> " + err);
+		else {
+			console.log(obj + "deleted!");
+		}
+	})
 
-app.listen(3000, function() {
-	console.log("Server started...");
-});
+	res.redirect("/friends");
+})
+
+app.listen(3000, (req, res) => console.log("SERVER STARTED!"));

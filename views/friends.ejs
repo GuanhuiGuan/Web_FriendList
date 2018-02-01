@@ -1,13 +1,18 @@
-<h1> YOUR FRIEND LIST </h1>
-
+<h1> MY FRIEND LIST </h1>
 
 <!-- display friend list -->
-<% friends.forEach(function(f) { %>
-	<li> <%= f %> </li>
+<% Frds.forEach(function(frd) {	%>
+	<li> <%= frd.name %> </li>
 <% }); %>
 
-<!-- add friend form -->
+<!-- add friend -->
 <form action="/addfriend" method="POST">
-	<input type="text" name="newFrd" placeholder="name">
-	<button>make friends</button>
+	<input type="text" name="frd" placeholder="name">
+	<button>Make friend</button>
+</form>
+
+<!-- delete friend -->
+<form action="/delfriend" method="POST">
+	<input type="text" name="frd" placeholder="name">
+	<button>Delete friend</button>
 </form>
