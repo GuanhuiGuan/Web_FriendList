@@ -1,7 +1,7 @@
 # Web_FriendList
 Test app
 
-Requirement: Node Js installed, Git installed
+Requirement: Node Js installed, MongoDB installed, Git installed
 
 Operations: View friends list and add friends
 
