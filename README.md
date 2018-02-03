@@ -1,16 +1,11 @@
 # Web_FriendList
-<h2> Test Web with NodeJS and MongoDB </h1>
+Test app
 
-<p> Requirement: Node Js installed, MongoDB installed, Git installed </p>
+Requirement: Node Js installed, Git installed
 
-<p> Operations: View friends list, add friends, delete friends </p>
+Operations: View friends list and add friends
 
-<div>
-  How to(windows):
-  <ol>
-    <li> Use git and move to project directory</li>
-    <li> Run MongoDB(e.g. cmd starts mongod.exe, another cmd starts mongo.exe)</li>
-    <li> Use git to run $ node app.js </li>
-    <li> Open a browser and go to http://localhost3000/friends</li>
-  </ol>
-</div>
+How to:
+1. Use git and move to project directory;
+2. Run $ node app.js
+3. Open a browser and go to http://localhost3000/friends

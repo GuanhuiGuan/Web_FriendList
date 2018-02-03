@@ -17,12 +17,16 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 
+// search styling content
+app.use(express.static("public"));
+
+
 
 
 
 // _____________________MAIN CODE_________________
 // home
-app.get("/", (req, res) => res.render("home"));
+app.get("/", (req, res) => res.render("pages/home"));
 
 
 // // save a sample friend
@@ -42,20 +46,35 @@ app.get("/", (req, res) => res.render("home"));
 
 // display friend list
 app.get("/friends", function(req, res) {
+	// sort friends ascendingly
+	var mysort = {name: 1};
 	Frd.find({}, function(err, frds) {
 		if(err)	console.log("Error -> " + err);
 		else {
 			console.log("Found!");
 			console.log(frds);
-			res.render("friends", {Frds: frds});
+			res.render("pages/friends", {Frds: frds});
 		}
-	})
+	}).sort(mysort);
 });
 
 // add friend
 app.post("/addfriend", function(req, res) {
 	console.log(req.body);
 	var input_name = req.body.frd;
+
+	// // find if same name exist to avoid duplicate
+	// Frd.find({name: input_name}, function(err, frds) {
+	// 	if(err)	console.log("Error -> " + err);
+	// 	else {
+	// 		// if duplicate found, quit
+	// 		if(frds !== []) {
+	// 			res.redirect("/friends");
+	// 		}
+	// 	}
+	// })
+
+	// add new friend
 	var newFrd = new Frd({
 		name: input_name
 	});

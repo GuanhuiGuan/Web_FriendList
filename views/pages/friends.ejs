@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ../partials/head %>
+</head>
+<body>
+	<h1> MY FRIEND LIST </h1>
+
+	<div class="form-div">
+		<!-- add friend -->
+		<form class="form" action="/addfriend" method="POST">
+			<input type="text" name="frd" placeholder="name">
+			<button>Make friend</button>
+		</form>
+
+		<!-- delete friend -->
+		<form class="form" action="/delfriend" method="POST">
+			<input type="text" name="frd" placeholder="name">
+			<button>Delete friend</button>
+		</form>
+	</div>
+		
+
+	<div class="list-div">
+		<!-- display friend list -->
+		<% Frds.forEach(function(frd) {	%>
+			<li> <%= frd.name %> </li>
+		<% }); %>
+	</div>
+
+		
+
+	
+</body>
+
+<footer>
+	<% include ../partials/footer %>
+</footer>
+
+</html>
+
+
+	
