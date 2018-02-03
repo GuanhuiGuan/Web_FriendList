@@ -1,11 +1,15 @@
 # Web_FriendList
-Test app
+<h2> Test app </h2>
 
-Requirement: Node Js installed, Git installed
+<div> Requirement: Node Js, MongoDB, Git </div>
 
-Operations: View friends list and add friends
+<div> Operations: View friends list and add friends </div>
 
-How to:
-1. Use git and move to project directory;
-2. Run $ node app.js
-3. Open a browser and go to http://localhost3000/friends
+<div>
+  <p> How to: </p>
+  <ol>
+    <li> Start MongoDB(boot mongod.exe and mongo.exe)</li>
+    <li> Use git to run $ node app.js</li>
+    <li> Open a browser and go to http://localhost3000 or http://localhost3000/friends</li>
+  </ol>
+</div>
