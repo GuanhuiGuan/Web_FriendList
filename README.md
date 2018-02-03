@@ -1,6 +1,8 @@
 # Web_FriendList
 <h2> Test app </h2>
 
+<img src="Demo_screenshot.png">
+
 <div> Requirement: Node Js, MongoDB, Git </div>
 
 <div> Operations: View friends list and add friends </div>
